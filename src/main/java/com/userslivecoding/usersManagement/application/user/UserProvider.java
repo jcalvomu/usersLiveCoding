@@ -19,7 +19,7 @@ public class UserProvider {
 
     public List<UserDTO> exec() {
         List<User> userList = userRepository.findAll();
-        return userList.stream().map(user -> new UserDTO(user.getName(),user.getAge()))
+        return userList.stream().map(user -> new UserDTO(user.getName(), user.getAge()))
                 .collect(Collectors.toList());
     }
 }

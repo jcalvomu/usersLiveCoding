@@ -24,9 +24,9 @@ public class UserRestController {
     }
 
     @GetMapping("{userName}")
-    public UserDTO getOneUser(@PathVariable String userName){
+    public List<UserDTO> getOneUser(@PathVariable String userName) {
         UserFinder userFinder = new UserFinder(userRepository);
-        return  userFinder.exec(userName);
+        return userFinder.exec(userName);
     }
 
     @PostMapping

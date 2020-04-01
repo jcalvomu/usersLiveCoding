@@ -4,7 +4,9 @@ import com.userslivecoding.usersManagement.domain.user.User;
 import com.userslivecoding.usersManagement.domain.user.UserDTO;
 import com.userslivecoding.usersManagement.domain.user.UserRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserFinder {
@@ -15,9 +17,8 @@ public class UserFinder {
         this.userRepository = userRepository;
     }
 
-    public UserDTO exec(String userNameToFind) {
-        User user = userRepository.findByName(userNameToFind).orElse(null);
-        if (ObjectUtils.isEmpty(user)) return null;
-        return new UserDTO(user.getName(), user.getAge());
+    public List<UserDTO> exec(String userNameToFind) {
+        List<User> userList = userRepository.findByName(userNameToFind);
+        return userList.stream().map(user -> new UserDTO(user.getName(), user.getAge())).collect(Collectors.toList());
     }
 }
