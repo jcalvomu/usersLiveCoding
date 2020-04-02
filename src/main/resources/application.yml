@@ -1,6 +1,7 @@
 spring:
-  main:
-    banner-mode: off
+  banner:
+    image:
+      location: 'claspath:banner.txt'
   h2:
     console:
       enabled: true
